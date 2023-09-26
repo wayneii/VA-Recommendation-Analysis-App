@@ -6,4 +6,4 @@ import streamlit as st
 
 # Text to display
 st.title('Hello, Streamlit!')
-st.write('This is a simple Streamlit app.')
+st.write('This is a simple Streamlit app. Edit')
