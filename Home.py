@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Read the data
-df = pd.read_excel('/workspaces/VA-Recommendation-Analysis-App/ACWV Recommendations with Categories and Similarity Groups.xlsx')
+df = pd.read_excel('ACWV Recommendations with Categories and Similarity Groups.xlsx')
 
 # Make the year column an integer
 df['Year'] = df['Year'].astype(int)
