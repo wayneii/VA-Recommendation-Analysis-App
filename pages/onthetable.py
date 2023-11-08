@@ -7,7 +7,7 @@ import pandas as pd
 
 
 
-#df = pd.read_excel('/workspaces/VA-Recommendation-Analysis-App/ACWV Recommendations with Categories and Similarity Groups.xlsx')
+#df = pd.read_excel('ACWV Recommendations with Categories and Similarity Groups.xlsx')
 
 # Display the DataFrame
 #data = load_data()
