@@ -35,7 +35,7 @@ st.markdown("""
 ######################################### DISPLAY SIMILAR RECOMMENDATIONS DF #######################################################
 
 def load_data():
-    data = pd.read_excel('/workspaces/VA-Recommendation-Analysis-App/ACWV Recommendations with Categories and Similarity Groups.xlsx')
+    data = pd.read_excel('ACWV Recommendations with Categories and Similarity Groups.xlsx')
 
     # Select a subset of columns if the DataFrame is very wide
     columns_to_display = ['ChainID', 'Year', 'ID', 'Category', 'Recommendation']
