@@ -193,68 +193,68 @@ st.markdown("<h1 style='text-align: center;'>Themes Over All Years</h1>", unsafe
 # st.pyplot(fig)
 
 ################################# LINE CHART 2 ############################################################
-# import plotly.express as px
-
-# # Count the occurrences of each category per year
-# category_counts = df.groupby(['Year', 'Category']).size().reset_index(name='Counts')
-
-# # Pivot the results to get years as index and categories as columns
-# category_counts_pivot = category_counts.pivot(index='Year', columns='Category', values='Counts').fillna(0)
-
-# # Melt the DataFrame for Plotly
-# category_counts_melted = category_counts_pivot.reset_index().melt(id_vars=['Year'], var_name='Category', value_name='Counts')
-
-# # Create a line chart using Plotly Express
-# fig = px.line(category_counts_melted, x='Year', y='Counts', color='Category', title='Category Counts per Year')
-
-# # Update layout for better readability and customization
-# fig.update_layout(
-#     xaxis_title='Year',
-#     yaxis_title='Count',
-#     hovermode='x',
-#     autosize=False,
-#     width=800,  # Width of the chart
-#     height=600,  # Height of the chart
-#     legend_title='Category'
-# )
-
-# # Update traces for better visualization, if necessary
-# #for trace in fig.data:
-#  #   trace.name = trace.name.split('=')[1]  # Updating trace names to be more readable
-
-# # Display the plot in Streamlit
-# st.plotly_chart(fig)
-
-###############################
-
 import plotly.express as px
 
-# # Count the occurrences of each category per year
+# Count the occurrences of each category per year
 category_counts = df.groupby(['Year', 'Category']).size().reset_index(name='Counts')
 
-# # Pivot the results to get years as index and categories as columns
+# Pivot the results to get years as index and categories as columns
 category_counts_pivot = category_counts.pivot(index='Year', columns='Category', values='Counts').fillna(0)
 
+# Melt the DataFrame for Plotly
+category_counts_melted = category_counts_pivot.reset_index().melt(id_vars=['Year'], var_name='Category', value_name='Counts')
 
 # Create a line chart using Plotly Express
-fig = px.line(category_counts_pivot, x=category_counts_pivot.index, y=category_counts_pivot.columns, title='Category Counts per Year')
+fig = px.line(category_counts_melted, x='Year', y='Counts', color='Category')
 
 # Update layout for better readability and customization
 fig.update_layout(
     xaxis_title='Year',
     yaxis_title='Count',
-    hovermode= 'x unified',
+    hovermode='x unified',
     autosize=False,
     width=800,  # Width of the chart
     height=600,  # Height of the chart
     legend_title='Category'
 )
 
-# Formatting
-#ax.figure(figsize=(12, 10))
-ax.set_xlabel('Year')
-ax.set_ylabel('Count')
-ax.legend()
+# Update traces for better visualization, if necessary
+#for trace in fig.data:
+ #   trace.name = trace.name.split('=')[1]  # Updating trace names to be more readable
 
-# Show the plot in Streamlit
-st.pyplot(fig)
+# Display the plot in Streamlit
+st.plotly_chart(fig)
+
+###############################
+
+# import plotly.express as px
+
+# # # Count the occurrences of each category per year
+# category_counts = df.groupby(['Year', 'Category']).size().reset_index(name='Counts')
+
+# # # Pivot the results to get years as index and categories as columns
+# category_counts_pivot = category_counts.pivot(index='Year', columns='Category', values='Counts').fillna(0)
+
+
+# # Create a line chart using Plotly Express
+# fig = px.line(category_counts_pivot, x=category_counts_pivot.index, y=category_counts_pivot.columns, title='Category Counts per Year')
+
+# # Update layout for better readability and customization
+# fig.update_layout(
+#     xaxis_title='Year',
+#     yaxis_title='Count',
+#     hovermode= 'x unified',
+#     autosize=False,
+#     width=800,  # Width of the chart
+#     height=600,  # Height of the chart
+#     legend_title='Category'
+# )
+
+# # Formatting
+# #ax.figure(figsize=(12, 10))
+# # ax.set_xlabel('Year')
+# # ax.set_ylabel('Count')
+# # ax.legend()
+
+# # Show the plot in Streamlit
+# st.pyplot(fig)
