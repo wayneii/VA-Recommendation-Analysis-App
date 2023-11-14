@@ -31,7 +31,7 @@ def main():
     st.title('Recommendation Finder')
 
     # Load Excel file
-    df = load_data('/workspaces/VA-Recommendation-Analysis-App/ACWV Recommendations with Categories and Similarity Groups.xlsx')  # Replace with your Excel file name
+    df = load_data('ACWV Recommendations with Categories and Similarity Groups.xlsx')  # Replace with your Excel file name
     recommendations = df['Recommendation']  # Replace with your column name
 
     # Vectorize recommendations
