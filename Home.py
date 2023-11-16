@@ -111,38 +111,6 @@ st.plotly_chart(fig)
 
 ################################### RESULTS DONUT CHART #################################################################################
 
-# st.markdown("<h1 style='text-align: center;'>Results of Recommendation</h1>", unsafe_allow_html=True)
-
-
-# # Now count the occurrences of each result in the filtered data
-# result_counts = filtered_df['Result '].value_counts()
-
-# # Assuming 'result_counts' contains the counts of each result
-# labels = result_counts.index
-# sizes = result_counts.values
-# colors = plt.cm.tab20c.colors  # Using a colormap for variety
-
-# fig, ax = plt.subplots()
-# #ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90, wedgeprops=dict(width=0.4, edgecolor='w'))
-
-# #explode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)  # explode the 2nd slice (Sexual Assault)
-# explode = [0] * len(labels)  # No slice is exploded, but can be customized as needed.
-
-# # Set chart size
-# plt.figure(figsize=(12, 8))
-# wedges, texts, autotexts = plt.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=140, wedgeprops=dict(width=0.25, edgecolor= 'black'))
-
-# # Here's where you can set the size of the labels.
-# plt.setp(texts, size=19) # Set the property 'size' for label texts to 12, or any other value you prefer
-# plt.setp(autotexts, size=19) # Set the property 'size' for autotexts (the percentage labels) to 12 and make them bold
-
-# # Adjust subplot parameters to move the pie chart
-# plt.subplots_adjust(top=1.5, bottom=0.1)  # Adjust the bottom parameter to move the chart down
-
-# plt.axis('equal')
-
-# # Display the donut chart in Streamlit
-# st.pyplot(plt)
 ##################################### RESULTS DONUT CHART 2 ####################################################################################
 
 st.markdown("<h1 style='text-align: center;'>Results of Recommendation</h1>", unsafe_allow_html=True)
@@ -168,29 +136,6 @@ st.plotly_chart(fig)
 
 st.markdown("<h1 style='text-align: center;'>Themes Over All Years</h1>", unsafe_allow_html=True)
 
-# # Count the occurrences of each category per year
-# category_counts = df.groupby(['Year', 'Category']).size().reset_index(name='Counts')
-
-# # Pivot the results to get years as index and categories as columns
-# category_counts_pivot = category_counts.pivot(index='Year', columns='Category', values='Counts').fillna(0)
-
-# # Plotting
-# # Plotting with a specified figure size (width, height)
-# fig, ax = plt.subplots(figsize=(14, 6))  # Increase the width for a longer chart
-
-
-# # Plot each category count as a line
-# for category in category_counts_pivot.columns:
-#     ax.plot(category_counts_pivot.index, category_counts_pivot[category], label=category)
-
-# # Formatting
-# #ax.figure(figsize=(12, 10))
-# ax.set_xlabel('Year')
-# ax.set_ylabel('Count')
-# ax.legend()
-
-# # Show the plot in Streamlit
-# st.pyplot(fig)
 
 ################################# LINE CHART 2 ############################################################
 import plotly.express as px
@@ -224,37 +169,3 @@ fig.update_layout(
 
 # Display the plot in Streamlit
 st.plotly_chart(fig)
-
-###############################
-
-# import plotly.express as px
-
-# # # Count the occurrences of each category per year
-# category_counts = df.groupby(['Year', 'Category']).size().reset_index(name='Counts')
-
-# # # Pivot the results to get years as index and categories as columns
-# category_counts_pivot = category_counts.pivot(index='Year', columns='Category', values='Counts').fillna(0)
-
-
-# # Create a line chart using Plotly Express
-# fig = px.line(category_counts_pivot, x=category_counts_pivot.index, y=category_counts_pivot.columns, title='Category Counts per Year')
-
-# # Update layout for better readability and customization
-# fig.update_layout(
-#     xaxis_title='Year',
-#     yaxis_title='Count',
-#     hovermode= 'x unified',
-#     autosize=False,
-#     width=800,  # Width of the chart
-#     height=600,  # Height of the chart
-#     legend_title='Category'
-# )
-
-# # Formatting
-# #ax.figure(figsize=(12, 10))
-# # ax.set_xlabel('Year')
-# # ax.set_ylabel('Count')
-# # ax.legend()
-
-# # Show the plot in Streamlit
-# st.pyplot(fig)
