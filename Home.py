@@ -169,3 +169,90 @@ fig.update_layout(
 
 # Display the plot in Streamlit
 st.plotly_chart(fig)
+
+
+######################### RESULTS IN BAR CHART WITH FILTER ###########################################################################
+
+# # Sidebar filters
+# #category = st.sidebar.selectbox('Select a Category', df['Category'].unique())
+# #year = st.sidebar.selectbox('Select a Year', df['Year'].unique())
+
+# # Filter the dataframe
+# filtered_df = df[(df['Category'] == category) & (df['Year'] == year)]
+
+# # Count the results
+# result_count = df['Result '].value_counts().reset_index()
+# result_count.columns = ['Year', 'Result ']
+
+# # Create the Plotly chart
+# fig = px.bar(result_count, x='Year', y='Result ', 
+#              title=f"Results for Category {category} in {year}")
+
+# # Display the chart
+# st.plotly_chart(fig)
+
+# # Sidebar filters for multi-selection
+# categories = st.sidebar.multiselect('Select Categories', df['Category'].unique(), default=df['Category'].unique()[0])
+# years = st.sidebar.multiselect('Select Years', df['Year'].unique(), default=df['Year'].unique()[0])
+
+# # Filter the dataframe based on selected categories and years
+# filtered_df = df[df['Category'].isin(categories) & df['Year'].isin(years)]
+
+# # If filtered_df is not empty, create and display the chart
+# if not filtered_df.empty:
+#     # Count the results
+#     result_count = filtered_df['Result '].value_counts().reset_index()
+#     result_count.columns = ['Result ', 'Count']
+
+#     # Create the Plotly chart
+#     fig = px.bar(result_count, x='Result ', y='Count', 
+#                  title=f"Results for Selected Categories and Years")
+
+#     # Display the chart
+#     st.plotly_chart(fig)
+# else:
+#     st.write("No data available for the selected categories and years.")
+
+
+
+# Load your data
+# df = pd.read_csv('your_dataset.csv')
+# Sample dataframe with a 'Year' column
+
+# Sidebar filters for multi-selection
+#categories = st.sidebar.multiselect('Select Categories', df['Category'].unique(), default=df['Category'].unique()[0])
+
+# Sidebar for category selection with 'Select All/Deselect All' feature
+st.sidebar.header("Select Categories")
+categories = df['Category'].unique()
+selected_categories = []
+
+# 'Select All' checkbox
+if st.sidebar.checkbox('Select All'):
+    selected_categories = categories.tolist()
+    title = f"Results by Year for All Categories"
+else:
+    # Individual category checkboxes
+    for category in categories:
+      title = f"Results by Year for Categories: {', '.join(selected_categories)}"
+      if st.sidebar.checkbox(category, key=category):
+            selected_categories.append(category)
+
+# Filter the dataframe based on selected categories
+filtered_df = df[df['Category'].isin(selected_categories)]
+
+# Group and count the data
+grouped_df = filtered_df.groupby(['Year', 'Result ']).size().reset_index(name='Count')
+
+# Create the Plotly chart for stacked bar
+# if st.sidebar.checkbox('Select All'):
+#   title = f"Results by Year for All Categories"
+# else:  
+#   title = f"Results by Year for Categories: {', '.join(selected_categories)}"
+
+st.markdown(f"<h3 style='text-align: center;'>{title}</h3>", unsafe_allow_html=True)
+fig = px.bar(grouped_df, x='Year', y='Count', color='Result ',
+             labels={'Count':'Count of Result'}, barmode='stack')
+
+# Display the chart
+st.plotly_chart(fig)
