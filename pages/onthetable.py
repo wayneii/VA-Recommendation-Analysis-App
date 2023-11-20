@@ -6,6 +6,9 @@ import streamlit as st
 import pandas as pd
 
 
+st.set_page_config(layout='wide')
+
+
 ##################################################### BANNER  #####################################################################
 
 st.markdown("""
@@ -22,6 +25,10 @@ st.markdown("""
   <h1 style="color:white;">Reoccuring Recommendations</h1>
 </div>
 """, unsafe_allow_html=True)
+
+st.title('')
+
+st.caption("Here you will find a list of reoccuring recommendations that have not yet reached a 'concur'. In order to identify recommendations that were similar to ones from previous years, recommendations were grouped, given a similarity score, and ordered by similarity. Here, we are only showing recommendations with a similarity score of 86 percent or higher. Click on a group to reveal the recommendations contained within and click on another to open a new group and close out the previous group.")
 
 ######################################### DISPLAY SIMILAR RECOMMENDATIONS DF #######################################################
 

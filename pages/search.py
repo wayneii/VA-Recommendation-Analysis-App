@@ -1,4 +1,6 @@
 import streamlit as st
+st.set_page_config(layout='wide')
+
 
 def show():
     st.write("You're viewing the Search page content!")
