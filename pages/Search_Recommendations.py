@@ -18,16 +18,18 @@ def find_similar_recommendations(query, tfidf_vectorizer, tfidf_matrix, features
     similarity = cosine_similarity(query_vect, tfidf_matrix)
     top_indices = similarity[0].argsort()[-top_n:][::-1]
     selected_columns = ['Year','Category','Result ' , 'Recommendation']
-    #return df.iloc[top_indices][selected_columns].reset_index(drop=True)
     results_df = df.iloc[top_indices][selected_columns]
-    results_df['Year'] = results_df['Year'].astype(int)
+    
+    # Add cosine similarity scores to the results DataFrame
+    results_df['Similarity_Score'] = similarity[0][top_indices]
     return results_df.reset_index(drop=True)
 
 # Load dataset
 #@st.cache
 def load_data(filename):
-    return pd.read_excel(filename)
-
+    df = pd.read_excel(filename)
+    df['Year'] = df['Year'].astype(str)
+    return df
 # Streamlit App
 def main():
     st.title('Recommendation Finder')
@@ -45,6 +47,7 @@ def main():
 
     if st.button('Search'):
         results = find_similar_recommendations(query, tfidf_vectorizer, tfidf_matrix, recommendations, df)
+        results.index = pd.RangeIndex(start=1, stop=len(results) + 1, step=1)
         st.write(results)
 
 if __name__ == '__main__':
