@@ -155,7 +155,7 @@ st.caption("In the figure above, the color is associated with the result of the 
 
 st.markdown("___")
 
-#################################### BAR CHART #######################################################
+#################################### TWO COLUMNS FOR OPTIONS AND BAR CHART  #######################################################
 # create two columns
 columns = st.columns((1,1))
 
@@ -186,6 +186,8 @@ with columns[0]:
 #         if st.sidebar.checkbox(category, key=category):
 #             selected_categories.append(category)
 #     title = f"Results by Year for Categories: {', '.join(selected_categories)}"
+
+#################################### BAR CHART OF RECOMMENDATIONS OVER TIME #####################################################################
 
 # Filter the DataFrame based on the selected categories
 filtered_df = df[(df['Category'] == selected_category)]
